@@ -1,12 +1,14 @@
-# ¿Cuánto pesa jugar de local en el fútbol uruguayo?
+# Análisis estadístico del Campeonato Uruguayo 2026
 
-**¿Es verdad que los equipos rinden más de local? ¿Hay clubes que dependen de su estadio más que otros? ¿Y poner juveniles cuesta puntos?** Analicé toda la temporada 2026 del Campeonato Uruguayo para responderlo con datos, y algunas respuestas no son las que uno esperaría.
+### Localía, juveniles y goleadores
+
+**¿Es verdad que los equipos rinden más de local? ¿Hay clubes que dependen de su estadio más que otros? ¿Y poner juveniles cuesta puntos?** Analicé la temporada 2026 del Campeonato Uruguayo, hasta la fecha 33, para responderlo con datos, y algunas respuestas no son las que uno esperaría.
 
 ![Resumen del tablero](capturas/01-resumen.png)
 
 Temporada 2026 del Campeonato Uruguayo, tabla anual (Apertura + Intermedio + Clausura), con datos de FBref hasta la fecha 33: 16 equipos, 533 jugadores y 264 partidos. Tablero de 4 páginas en Power BI.
 
-**Qué muestra este proyecto:** modelado de datos y DAX en Power BI, inferencia estadística (intervalos de confianza, pruebas de hipótesis, comparaciones múltiples) y comunicar resultados con sus límites, sin exagerarlos.
+**Qué muestra este proyecto:** modelado de datos y DAX en Power BI, inferencia estadística y comunicar resultados con sus límites, sin exagerarlos.
 
 ---
 
