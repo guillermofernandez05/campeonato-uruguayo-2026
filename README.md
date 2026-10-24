@@ -1,16 +1,10 @@
-# Campeonato Uruguayo 2026 — análisis en Power BI
+# ¿Cuánto pesa jugar de local en el fútbol uruguayo?
 
-**Armé un ranking de qué equipos dependen más de jugar en su cancha. Parecía contar una historia clarísima. Después calculé los márgenes de error, y el ranking se desarmó.**
+**¿Es verdad que los equipos rinden más de local? ¿Hay clubes que dependen de su estadio más que otros? ¿Y poner juveniles cuesta puntos?** Analicé toda la temporada 2026 del Campeonato Uruguayo para responderlo con datos, y algunas respuestas no son las que uno esperaría.
 
 ![Resumen del tablero](capturas/01-resumen.png)
 
 Temporada 2026 del Campeonato Uruguayo, tabla anual (Apertura + Intermedio + Clausura), con datos de FBref hasta la fecha 33: 16 equipos, 533 jugadores y 264 partidos. Tablero de 4 páginas en Power BI.
-
-### En 30 segundos
-
-- **Jugar de local ayuda**, aunque la ventaja es modesta: 1,53 puntos por partido en casa contra 1,22 afuera.
-- **Con una sola temporada no se puede saber qué equipo depende más de su cancha.** Las diferencias entre clubes entran dentro del margen de error, incluido el caso de Peñarol, que sumó más afuera que en casa.
-- **Darles minutos a los juveniles no aparece asociado a sumar menos puntos.** Los sub-21 hacen goles en la misma proporción en que juegan.
 
 **Qué muestra este proyecto:** modelado de datos y DAX en Power BI, inferencia estadística (intervalos de confianza, pruebas de hipótesis, comparaciones múltiples) y comunicar resultados con sus límites, sin exagerarlos.
 
@@ -22,32 +16,32 @@ En el fútbol se da por hecho que la localía pesa: se nota en cómo se arma un 
 
 La medí en lo que importa para la tabla: **puntos por partido** (PPP). En los 264 partidos de la temporada, el local sacó **1,53** y el visitante **1,22**. El local ganó el **42,4%** de los partidos, el visitante el **32,2%**, y el **25,4%** terminó empatado.
 
-**Lo que se concluye:** jugar en casa vale unos **0,31 puntos por partido**. A lo largo de los 16 o 17 partidos de local de una temporada, son unos **5 puntos en la tabla**, que en el Uruguayo pueden ser la diferencia entre entrar o no a una copa.
+**Lo que se concluye:** jugar de local vale unos **0,31 puntos por partido**. A lo largo de los 16 o 17 partidos de local de una temporada, son unos **5 puntos en la tabla**, que en el Uruguayo pueden ser la diferencia entre entrar o no a una copa.
 
 Pero hay un matiz: con 264 partidos, esa ventaja queda **justo en el límite de lo que se puede distinguir del azar** (p ≈ 0,05). Es consistente con lo que se observa en el fútbol en general, aunque esta temporada sola apenas alcanza para confirmarla.
 
-## Pregunta 2 · ¿Qué equipo depende más de su cancha?
+## Pregunta 2 · ¿Qué equipo depende más de jugar de local?
 
-Esta es la pregunta que más se presta para un buen titular. Y el primer ranking parecía dárselo:
+Comparé cuántos puntos por partido sumó cada equipo de local y de visitante. A primera vista aparecen casos muy llamativos:
 
-- **Depor. Maldonado** se transforma en casa: **2,24** puntos por partido de local y **1,31** de visitante. Casi un punto entero de diferencia.
-- **Racing** y **Defensor** muestran el mismo patrón, con +0,75 y +0,72.
-- Y el dato más llamativo: **Peñarol, primero en la tabla anual, sumó más de visitante (2,06) que de local (1,82).** El líder de la tabla, mejor afuera que en su cancha.
+- **Depor. Maldonado** suma **2,24** puntos por partido de local y **1,31** de visitante: casi un punto de diferencia.
+- **Racing** y **Defensor** también rinden mucho más de local.
+- **Peñarol**, líder de la tabla, hace lo contrario: suma más de visitante (**2,06**) que de local (**1,82**).
 
-Antes de creérmelo, le puse a cada equipo su **margen de error**. Cada club jugó unos 16 partidos de cada lado, y con tan pocos partidos el margen ronda **±0,9 puntos por partido**: más grande que casi todas las diferencias del ranking.
+Pero hay una trampa. Cada equipo jugó solo unos **16 partidos de local y 16 de visitante**, y con tan pocos partidos los promedios se mueven mucho por casualidad: un par de goles en el último minuto alcanzan para cambiarlos.
 
-El resultado:
+Para saber si una diferencia es real o casualidad, le calculé a cada equipo un **margen de error**. Con 16 partidos, ese margen es de **casi un punto por partido**: más grande que casi todas las diferencias que aparecían.
 
-- **15 de los 16 equipos tienen un margen que cruza el cero.** Su diferencia entre local y visitante puede ser pura casualidad.
-- **Solo Depor. Maldonado queda apenas afuera del cero, y por poco.** Pero al comparar 16 equipos a la vez, que uno solo supere el umbral es justamente lo que se espera por azar. Es como tirar 16 monedas: que una salga rara no es noticia.
-- Un **test de heterogeneidad**, que mide si los equipos difieren entre sí en cuánto les rinde la localía, da **p = 0,92**: no hay ninguna evidencia de que eso pase.
-- **Lo de Peñarol también es ruido:** su margen va de −1,1 a +0,7 puntos.
+Teniéndolo en cuenta:
 
-**Lo que se concluye:** con una temporada no se puede decir que un club dependa más de su cancha que otro. El ranking que parecía contar una historia es, sobre todo, azar. Y es un error fácil de cometer: cualquier análisis que compare equipos con 16 partidos por lado, sin márgenes de error, está expuesto a encontrar patrones que no existen.
+- En **15 de los 16 equipos**, la diferencia entre local y visitante podría ser casualidad. Peñarol incluido.
+- **Solo Depor. Maldonado** queda afuera de su margen de error, y por muy poco. Pero al comparar 16 equipos, es esperable que alguno lo logre por suerte.
+
+**Lo que se concluye:** con una sola temporada no alcanza para decir que un equipo dependa más de jugar de local que otro. El ranking que parecía contar una historia es, en su mayoría, casualidad.
 
 ![Página de localía: diferencia local − visitante con margen de error por equipo](capturas/02-localia.png)
 
-*Cada barra es la diferencia entre lo que el equipo sumó de local y de visitante; la línea es el margen de error. Si la línea toca el cero, la diferencia puede ser casualidad. Solo la barra dorada (Depor. Maldonado) no lo toca.*
+***Cómo leer el gráfico:** la barra muestra cuántos puntos más (o menos) suma cada equipo de local que de visitante. La línea horizontal es el margen de error. Si la línea toca el 0 (la línea punteada), la diferencia podría ser casualidad. Solo Depor. Maldonado, en dorado, no lo toca.*
 
 ## Pregunta 3 · ¿Quién apuesta por los juveniles, y le cuesta puntos?
 
@@ -75,6 +69,12 @@ La cuarta página mira a los goleadores desde otro ángulo: no solo cuántos gol
 
 El tablero completo, en una sola vista, está en [`campeonato_uruguayo.pdf`](campeonato_uruguayo.pdf).
 
+## Qué haría con esto
+
+No usar las diferencias local/visitante de una sola temporada para tomar decisiones sobre un club en particular. Para que la pregunta tenga respuesta hace falta juntar varias temporadas, o usar un modelo que acerque los efectos de cada equipo al promedio de la liga cuando la muestra es chica.
+
+Lo que sí se puede usar hoy es el valor de la liga en su conjunto: **+0,31 puntos por partido** por jugar de local.
+
 ## Limitaciones
 
 - **Una sola temporada.** Es la limitación que domina todo lo demás, y es el hallazgo central del proyecto.
@@ -94,7 +94,8 @@ El tablero completo, en una sola vista, está en [`campeonato_uruguayo.pdf`](cam
 
 - **PPP:** promedio de puntos por partido jugado (3 por victoria, 1 por empate, 0 por derrota), de local y de visitante por separado.
 - **Margen de error:** intervalo de confianza del 95% de la diferencia local − visitante (diferencia ± 1,96 × error estándar de Welch).
-- **Heterogeneidad:** test Q de Cochran sobre las 16 diferencias, ponderadas por la inversa de su varianza.
+- **Heterogeneidad:** test Q de Cochran sobre las 16 diferencias, ponderadas por la inversa de su varianza. Da p = 0,92: no hay evidencia de que los equipos difieran entre sí en cuánto les rinde la localía.
+- **Comparaciones múltiples:** con 16 intervalos del 95%, es esperable que alrededor de uno no incluya el cero solo por azar, que es lo que pasa con Depor. Maldonado.
 - **Exclusiones:** partidos sin resultado y la final del Intermedio, que se jugó en cancha neutral y no suma para la tabla anual.
 - **Sub-21:** nacidos en 2005 o después, medido en minutos jugados.
 
