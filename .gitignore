@@ -1,0 +1,26 @@
+# Power BI
+*.pbix.bak
+~$*
+.pbi/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Credenciales — nunca subir
+.env
+*.key
+credenciales*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
