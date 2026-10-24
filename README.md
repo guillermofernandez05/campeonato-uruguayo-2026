@@ -69,12 +69,6 @@ La cuarta página mira a los goleadores desde otro ángulo: no solo cuántos gol
 
 El tablero completo, en una sola vista, está en [`campeonato_uruguayo.pdf`](campeonato_uruguayo.pdf).
 
-## Qué haría con esto
-
-No usar las diferencias local/visitante de una sola temporada para tomar decisiones sobre un club en particular. Para que la pregunta tenga respuesta hace falta juntar varias temporadas, o usar un modelo que acerque los efectos de cada equipo al promedio de la liga cuando la muestra es chica.
-
-Lo que sí se puede usar hoy es el valor de la liga en su conjunto: **+0,31 puntos por partido** por jugar de local.
-
 ## Limitaciones
 
 - **Una sola temporada.** Es la limitación que domina todo lo demás, y es el hallazgo central del proyecto.
